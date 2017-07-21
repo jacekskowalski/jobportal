@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head jsfc="h:head">
+    <title>Aplikacje</title>
+    <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet"/>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer{
+            position: fixed;
+            left:0%;
+            bottom:0;
+            width:100%;
+            height:50px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+
+        }
+        .nav form{
+            margin-left: 60%;
+        }
+        .footer form{
+            margin-left:30%;
+        }
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+        }
+
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        .footer a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+        ul #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            color: rgb(47,79,79);
+            position:absolute;
+            top:0;
+            left:1.5em;
+
+        }
+        ul #logo a{
+            border-right:none;
+            width:200px;
+        }
+        #table1{
+            position: absolute;
+            top: 100px;
+            left:40%;
+            width:800px;
+            font-size: small;
+        }
+        .mylist tr,  .mylist ui-datatable-odd, .mylist th {
+            background-color: white;
+        }
+        </style>
+</head>
+<body jsfc="h:body" >
+<div class="nav" >
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li id="logo"><a jsf:action="/index.xhtml?faces-redirect=true" jsfc="h:commandLink">jobportal</a></li>
+            <li><a jsf:action="#{client.logout}" jsfc="h:commandLink">Wyloguj</a></li>
+            <li><a jsf:action="/Pages/client.xhtml?faces-redirect=true" jsfc="h:commandLink">Wstecz</a></li>
+            <li><a jsf:action="/Pages/addoffer.xhtml?faces-redirect=true" jsfc="h:commandLink">Dodaj</a></li>
+        </ul>
+    </form>
+
+</div>
+    <div id="table1">
+        <h3>Lista aplikacji</h3>
+        <h:form>
+            <p:dataTable var="d" styleClass="mylist" value="#{client.sendCVList}" sortBy="#{d.nrref}"
+                         emptyMessage="Brak zgłoszeń" paginator="true" rows="10" expandableRowGroups="true" >
+                 <p:headerRow >
+                            <p:column colspan="4">
+                                <h:outputText value="#{d.nrref}" />
+                            </p:column>
+                        </p:headerRow>         
+                  <p:column  headerText="Dane">
+                        <h:outputText value="#{d.id}" />
+                    </p:column>
+                <p:column headerText="Data">
+                            <h:outputText value="#{d.appdate}" />
+                        </p:column> 
+                    <p:column  headerText="Nazwa pliku">
+                        <h:outputText value="#{d.docname}" />
+                    </p:column>
+                 
+                    
+                 <p:column >
+                       <p:commandButton value="Pobierz" ajax="false"  icon="ui-icon-arrowthick-1-s"
+                                        actionListener="#{fileDownload.downloadChoosenFile(d.docname)}"       >
+                        <p:fileDownload value="#{fileDownload.file}" />
+                    </p:commandButton>
+                    </p:column>
+            </p:dataTable>
+
+        </h:form>
+
+    </div>
+<div class="footer">
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li><a jsf:action="/Pages/about.xhtml?faces-redirect=true" jsfc="h:commandLink">O nas</a></li>
+            <li><a jsf:action="/Pages/rules.xhtml?faces-redirect=true" jsfc="h:commandLink">Regulamin</a></li>
+            <li><a jsf:action="/Pages/privacy.xhtml?faces-redirect=true" jsfc="h:commandLink">Prywatność</a></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head >
+    <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet"/>
+    <title>Rejestracja</title>
+    <script type="text/javascript">
+
+        function validate(){
+            var req=true;
+
+            if(compValid()===false ||emailValid()===false || pswdValid()===false || cityValid()===false
+                || nipValid()===false ||  zipValid()===false){
+                document.getElementById("form1:email").innerHTML='';
+                document.getElementById("form1:pswd").innerHTML='';
+                document.getElementById("form1:city").innerHTML='';
+                document.getElementById("form1:compName").innerHTML='';
+                document.getElementById("form1:nip").innerHTML='';
+
+                req= false;
+            }
+
+            return req;
+        }
+
+        function compValid(){
+            var fn=document.getElementById("form1:compName");
+            var pat= /(\w+\s?)+/g;
+            var res1= pat.test(fn.value);
+            return res1;
+        }
+
+        function emailValid(){
+            var email=document.getElementById("form1:email");
+            var pat=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/g;
+            var res2= pat.test(email.value);
+
+            return res2;
+        }
+
+        function pswdValid(){
+            var pswd=document.getElementById("form1:pswd");
+            var pat=/^[a-zA-Z0-9!@#\\$%^*)(+=._]{7,}$/g;
+            var res3= pat.test(pswd.value);
+            return res3;
+        }
+        function cityValid(){
+            var city=document.getElementById("form1:city");
+            var pat=/(\w+\s?)+/g;
+            var res4=  pat.test(city.value);
+            return res4;
+        }
+
+        function nipValid(){
+            var nip=document.getElementById("form1:nip");
+            var pat=/\d{9}/g;
+            var res6=pat.test(nip.value);
+            return res6;
+        }
+
+        function zipValid(){
+            var zip=document.getElementById("form1:zip");
+            var pat=/\d{2}-\d{3}/g;
+            var res5= pat.test(zip.value);
+            return res5;
+        }
+       </script>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+        ul #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            color: rgb(47,79,79);
+            position:absolute;
+            top:0;
+            left:1.5em;
+
+        }
+        ul #logo a{
+            border-right:none;
+            width:200px;
+        }
+
+        .footer{
+            position: absolute;
+            left:0%;
+          bottom:0;
+            width:100%;
+            height:50px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+
+        }
+        .nav form{
+            margin-left: 60%;
+        }
+        .footer form{
+            margin-left:30%;
+        }
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+        }
+
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        .footer a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+        #validation {
+            position:relative;
+            margin:10% 0 0 40%;
+            width:600px;
+            box-sizing: border-box;
+        }
+
+        .mainmenu li{
+            position: relative;
+        }
+        .mainmenu li:hover >.submenu{
+            display:block ;
+
+        }
+        .mainmenu li:hover >.submenu1{
+            display:block ;
+
+        }
+        .mainmenu li> .submenu{
+            display:none;
+            position: absolute;
+            top:30px;
+            left:0%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+        .mainmenu li> .submenu1 {
+            display:none;
+            position: absolute;
+            top:30px;
+            left:25%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+        #form1 .buttons{
+            color: white;
+            background-color: cadetblue;
+            padding:5px 10px 5px 10px;
+            border-radius: 8px;
+            font-size: large;
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin-left:180px;
+        }
+        .inputs{
+            width: 200px;
+            float:right;
+        }
+        /*   Formularz rejestracji dla pracodawców  */
+    </style>
+</h:head>
+<h:body>
+<div class="nav" >
+
+    <form action="#" jsfc="h:form" >
+        <ul class="mainmenu">
+            <li id="logo"><a jsf:action="/index.xhtml?faces-redirect=true" jsfc="h:commandLink">jobportal</a></li>
+            <c:choose>
+                <c:when test="#{userID.ID['class'].name  eq 'java.lang.Integer'}">
+                    <li><h:link value="Profil" outcome="/Pages/user.xhtml?faces-redirect=true" /> </li>
+                </c:when>
+                <c:when test="#{userID.ID['class'].name  eq 'java.lang.String'}">
+                    <li><h:link value="Profil" outcome="/Pages/client.xhtml?faces-redirect=true" /> </li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="#"  >Zaloguj się</a>
+                        <ul class="submenu"  >
+                            <li><a jsf:action="/Pages/loginpr.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracownik</a></li>
+                            <li><a jsf:action="/Pages/loginem.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracodawca</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li><a href="#" >Zarejestruj</a>
+
+                        <ul class="submenu1">
+                            <li><a jsf:action="/Pages/signuppr.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracownik</a></li>
+                            <li><a jsf:action="/Pages/signupem.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracodawca</a></li>
+                        </ul>
+
+                    </li>
+                </c:otherwise>
+            </c:choose>
+            <li><a jsf:action="Pages/contact.xhtml?faces-redirect=true" jsfc="h:commandLink">Kontakt</a></li>
+
+        </ul>
+    </form>
+
+</div>
+<div id="validation">
+    <h:form id="form1"  >
+        <h2>Zarejestruj się</h2>
+<h:panelGrid columns="3">
+        <p:outputLabel for="compName"  >Nazwa</p:outputLabel>
+        <p:inputText id="compName" styleClass="inputs" required="true" requiredMessage="Pole wymagane" value="#{signupEmController.company}" />
+        <p:message for="compName" id="error1" showDetail="true" style="color:red;float:right"/>
+
+        <p:outputLabel for="email"  >Email</p:outputLabel>
+         <p:inputText  id="email" styleClass="inputs" required="true" requiredMessage="Pole wymagane" value="#{signupEmController.email}" />
+        <p:message for="email" id="error2" showDetail="true" style="color:red;float:right"/>
+
+        <p:outputLabel for="pswd"  >Hasło</p:outputLabel>
+         <p:password id="pswd" styleClass="inputs" placeholder="min. 7 znaków"  required="true" requiredMessage="Pole wymagane" value="#{signupEmController.password}"/>
+        <p:message for="pswd" id="error3" showDetail="true"  style="color:red;float:right"/>
+
+
+        <p:outputLabel for="nip"  >REGON</p:outputLabel>
+         <p:inputText id="nip" styleClass="inputs" required="true" requiredMessage="Pole wymagane" value="#{signupEmController.companyId}"/>
+        <p:message for="nip" id="error4" showDetail="true" style="color:red;float:right"/>
+
+        <p:outputLabel for="street"  >Ulica</p:outputLabel>
+        <p:inputText id="street" styleClass="inputs" required="true" requiredMessage="Pole wymagane" value="#{signupEmController.street}"/>
+        <p:message for="street" id="error5" showDetail="true" style="color:red;float:right"/>
+
+        <p:outputLabel for="zip"  >Kod</p:outputLabel>
+        <p:inputText id="zip" styleClass="inputs" required="true" requiredMessage="Pole wymagane" value="#{signupEmController.zipcode}"/>
+        <p:message for="zip" id="error6" showDetail="true" style="color:red;float:right"/>
+
+        <p:outputLabel for="city"  >Miasto</p:outputLabel>
+        <p:inputText id="city" styleClass="inputs"  required="true" requiredMessage="Pole wymagane" value="#{signupEmController.city}"/>
+        <p:message for="city" id="error7" showDetail="true" style="color:red;float:right"/>
+    </h:panelGrid>
+        <br/>
+        <h:commandButton type="submit" onclick="return validate();" id="submitBtn" styleClass="buttons" value="Wyślij"  action="#{signupEmController.createRecord}"/>
+    </h:form>
+
+</div>
+<div class="footer">
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li><a jsf:action="/Pages/about.xhtml?faces-redirect=true" jsfc="h:commandLink">O nas</a></li>
+            <li><a jsf:action="/Pages/rules.xhtml?faces-redirect=true" jsfc="h:commandLink">Regulamin</a></li>
+            <li><a jsf:action="/Pages/privacy.xhtml?faces-redirect=true" jsfc="h:commandLink">Prywatność</a></li>
+        </ul>
+    </form>
+</div>
+</h:body>
+</html>
+

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+
+        }
+        #validation {
+            position:relative;
+            margin:10% 0 0 40%;
+            width:600px;
+            box-sizing: border-box;
+        }
+        #editTag{
+            background-color: white;
+            color:cadetblue;
+            font-size: 1em;
+            border-radius: 5px;
+            padding:5px;
+            float:right;
+        }
+    </style>
+    <script type="text/javascript">
+
+        function validate(){
+            var req=true;
+
+            if(compValid()===false ||emailValid()===false || pswdValid()===false || cityValid()===false
+          || nipValid()===false ||  zipValid()===false){
+                document.getElementById("form1:email").innerHTML='';
+                document.getElementById("form1:pswd").innerHTML='';
+                document.getElementById("form1:city").innerHTML='';
+                document.getElementById("form1:compName").innerHTML='';
+
+                document.getElementById("form1:nip").innerHTML='';
+
+               req= false;
+            }
+            alert(req);
+            return req;
+        }
+        function compValid(){
+            var fn=document.getElementById("form1:compName");
+            var pat= /(\w+\s?)+/g;
+            var res1= pat.test(fn.value);
+return res1;
+        }
+
+        function emailValid(){
+            var email=document.getElementById("form1:email");
+            var pat=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/g;
+            var res2= pat.test(email.value);
+
+            return res2;
+        }
+
+        function pswdValid(){
+            var pswd=document.getElementById("form1:pswd");
+            var pat=/^[a-zA-Z0-9!@#\\$%^*)(+=._]{7,}$/g;
+           var res3= pat.test(pswd.value);
+           return res3;
+        }
+        function cityValid(){
+            var city=document.getElementById("form1:city");
+            var pat=/(\w+\s?)+/g;
+            var res4=  pat.test(city.value);
+return res4;
+        }
+
+        function nipValid(){
+            var nip=document.getElementById("form1:nip");
+          var pat=/\d{9}/g;
+          var res6=pat.test(nip.value);
+          return res6;
+        }
+
+        function zipValid(){
+            var zip=document.getElementById("form1:zip");
+            var pat=/\d{2}-\d{3}/g;
+           var res5= pat.test(zip.value);
+return res5;
+        }
+
+    </script>
+
+</h:head>
+<h:body>
+    <div id="validation">
+    <h:form id="form1"  >
+        <h2>Zarejestruj się</h2>
+        <h:panelGrid columns="2">
+            <p:outputLabel for="compName"  >Nazwa</p:outputLabel>
+            <p:inputText id="compName" styleClass="inputs" required="true"  requiredMessage="Pole wymagane" value="#{signupEmController.company}" />
+
+
+            <p:outputLabel for="email"  >Email</p:outputLabel>
+            <p:inputText  id="email" styleClass="inputs" required="true" value="#{signupEmController.email}" />
+
+
+            <h:outputLabel for="pswd"  >Hasło</h:outputLabel>
+            <p:password id="pswd" styleClass="inputs" placeholder="min. 7 znaków"  required="true" value="#{signupEmController.password}"/>
+
+
+
+            <p:outputLabel for="nip"  >REGON</p:outputLabel>
+            <p:inputText id="nip" styleClass="inputs" required="true" value="#{signupEmController.companyId}"/>
+
+
+            <p:outputLabel for="street"  >Ulica</p:outputLabel>
+            <p:inputText id="street" styleClass="inputs" required="true" value="#{signupEmController.street}"/>
+
+
+            <p:outputLabel for="zip"  >Kod</p:outputLabel>
+            <p:inputText id="zip" styleClass="inputs" required="true" value="#{signupEmController.zipcode}"/>
+
+
+            <p:outputLabel for="city"  >Miasto</p:outputLabel>
+            <p:inputText id="city" styleClass="inputs" required="true"  value="#{signupEmController.city}"/>
+
+        </h:panelGrid>
+        <br/>
+        <h:commandButton type="submit" onclick="return emailValid();" styleClass="buttons" value="Wyślij"  action="#{signupEmController.createRecord}"/>
+    </h:form>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head jsfc="h:head">
+<title>Regulamin</title>
+    <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet"/>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+            text-align: justify;
+
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+        .footer{
+            position: fixed;
+            left:0%;
+            bottom: 0%;
+            width:100%;
+          height: 50px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+
+        }
+        .nav form{
+            margin-left: 60%;
+        }
+        .footer form{
+            margin-left:30%;
+        }
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+
+        }
+   ol li{
+       margin-right:0.5em;
+   }
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        .footer a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+        ul #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            color: rgb(47,79,79);
+            position:absolute;
+            top:0;
+            left:1.5em;
+
+        }
+        ul #logo a{
+            border-right:none;
+            width:200px;
+        }
+        .mainmenu li{
+            position: relative;
+        }
+        .mainmenu li:hover >.submenu{
+            display:block ;
+
+        }
+        .mainmenu li:hover >.submenu1{
+            display:block ;
+
+        }
+        .mainmenu li> .submenu{
+            display:none;
+            position: absolute;
+            top:30px;
+            left:0%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+        .mainmenu li> .submenu1 {
+            display:none;
+            position: absolute;
+            top:30px;
+            left:25%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+
+    </style>
+</head >
+<body jsfc="h:body">
+<div class="nav" >
+
+    <form action="" jsfc="h:form">
+        <ul class="mainmenu">
+            <li id="logo"><a jsf:action="/index.xhtml?faces-redirect=true" jsfc="h:commandLink">jobportal</a></li>
+            <c:choose>
+                <c:when test="#{userID.ID['class'].name  eq 'java.lang.Integer'}">
+                    <li><h:link value="Profil" outcome="/Pages/user.xhtml?faces-redirect=true" /> </li>
+                </c:when>
+                <c:when test="#{userID.ID['class'].name  eq 'java.lang.String'}">
+                    <li><h:link value="Profil" outcome="/Pages/client.xhtml?faces-redirect=true" /> </li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="#"  >Zaloguj się</a>
+                        <ul class="submenu"  >
+                            <li><a jsf:action="/Pages/loginpr.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracownik</a></li>
+                            <li><a jsf:action="/Pages/loginem.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracodawca</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li><a href="#" >Zarejestruj</a>
+
+                        <ul class="submenu1">
+                            <li><a jsf:action="/Pages/signuppr.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracownik</a></li>
+                            <li><a jsf:action="/Pages/signupem.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracodawca</a></li>
+                        </ul>
+
+                    </li>
+                </c:otherwise>
+            </c:choose>
+            <li><a jsf:action="/Pages/contact.xhtml?faces-redirect=true" jsfc="h:commandLink">Kontakt</a></li>
+        </ul>
+    </form>
+
+</div>
+<h2> Postanowienia ogólne</h2>
+<ol>
+    <li>Niniejszy regulamin określa zasady, na jakich użytkownicy Internetu mogą korzystać z Serwisu jobportal</li>
+    <li>Treści zamieszczane w Serwisie  są dostępne dla wszystkich korzystających z Internetu, chyba że z opisu danej funkcjonalności wprost wynika inaczej,
+        jednakże z pełnej funkcjonalności Serwisu jobportal mogą korzystać tylko zalogowani Użytkownicy</li>
+    <li>Serwis udostępniając swoje zasoby systemu teleinformatycznego umożliwia przechowywanie danych przez Użytkowników. Spółka nie jest inicjatorem przekazu danych ani
+        nie wybiera odbiorcy przekazu danych, jak również nie wybiera ani nie modyfikuje informacji zawartych w przekazie.</li>
+    <li>Dostęp do treści dla użytkowników w Serwisie  JobPortal oraz korzystanie z jego funkcjonalności opisanych w Regulaminie ,za wyjątkiem dodawania ogłoszeń nie
+        podlega żadnym opłatom. Warunkiem uzyskania dostępu do funkcjonalności Serwisu jest skorzystanie z urządzenia komunikującego się z Internetem i
+        wyposażonego w powszechnie używaną przeglądarkę internetową, a w przypadku Użytkowników – również posiadanie konta poczty elektronicznej
+        działającego na dowolnym serwerze (inny niż tymczasowy lub anonimowy).</li>
+    <li>Podmioty prowadzące działalnośc moga korzystać z funkcjonalności dodawania ogłoszeń. Jest to usługa platna w formie abonamentu (SaaS)</li>
+    <li>Spółka może świadczyć inne usługi związane z Serwisem jobportal, których rodzaje i warunki świadczenia (w tym ewentualna odpłatność) określane są
+        w odrębnych regulaminach przedkładanych do akceptacji osobom chcącym skorzystać z tych usług.</li>
+</ol>
+<h2>2. Definicje</h2>
+<ol>
+    <li>Konto – wydzielone dla danego Użytkownika w Serwisie strony internetowej, gdzie zbierane i prezentowane są informacje o działaniach
+        Użytkownika w Serwisie. Jeden Użytkownik może posiadać tylko jedno Konto w serwisie jobportal, chyba, że Spółka wyrazi zgodę na kolejne.</li>
+    <li>Regulamin – niniejszy regulamin.</li>
+    <li>Serwis jobportal – internetowy serwis prowadzony w domenie jobportal.pl przez Spółkę, będący platformą komunikacyjną przeznaczoną do wymiany
+        informacji, opinii i spostrzeżeń dotyczących treści dostępnych w sieci Internet.</li>
+    <li>Firma – Firma prowadzona przez Jacka Kowalskiego z siedzibą w Poznaniu pod adresem Grunwaldzka 40</li>
+    <li>Użytkownik – osoba zarejestrowana w Serwisie.</li>
+
+</ol>
+<h2>3. Rejestracja w Serwisie jobortal</h2>
+<ol>
+    <li>Zarejestrować się w Serwisie  mogą tylko osoby fizyczne, które ukończyły 18 lat. </li>
+    <li>W celu dokonania rejestracji należy podać w odpowiednim formularzu dostępnym w Serwisie :imię,nazwisko, adres e-mail (inny niż tymczasowy
+        lub anonimowy)hasło,date urodzenia,zaakceptować Regulamin, a następnie dokonać jednorazowej aktywacji polegającej na uaktywnieniu linku przesłanego na
+        podany adres e-mail.</li>
+    <li>Użytkownik uzyskuje dostęp do pełnej funkcjonalności Serwisu  po podaniu loginu i hasła (logowanie).</li>
+    <li>Użytkownicy mają dodatkową możliwość logowania się w Serwisie z wykorzystaniem ich danych dostępowych pochodzących z serwisów
+        zewnętrznych, które każdorazowo są wskazane na stronach Serwisu. Serwisy zewnętrzne mogą przewidywać dodatkowe warunki skorzystania z takiej opcji.
+        Pierwsze takie logowanie (o ile nie następuje po rejestracji w Serwisie  w sposób opisany w powyższym punkcie 3.2.) połączone jest z akceptacją Regulaminu.
+        Wykonanie tych czynności jest traktowane jako rejestracja w Serwisie jobportal.</li>
+    <li>Dokonanie aktywacji oznacza zakończenie rejestracji, z tą chwilą dochodzi do zawarcia pomiędzy Użytkownikiem a Spółką umowy o świadczenie
+        usług drogą elektroniczną na warunkach określonych w Regulaminie i polegających na zapewnieniu Użytkownikowi możliwości korzystania z Serwisu
+        w sposób opisany w Regulaminie w odniesieniu do danego Konta.</li>
+    <li>W wyniku rejestracji dla Użytkownika tworzone jest Konto. Informacje na Koncie Użytkownik może uzupełnić o własne dane, przy czym dane te może w każdej chwili usunąć.</li>
+    <li>Użytkownik ma wgląd wyłącznie do informacji jawnych dotyczących kont pozostałych Użytkowników.</li>
+</ol>
+<h2>Podstawowa funkcjonalność Serwisu </h2>
+
+<h2>4. Zasady korzystania z Serwisu JobPortal</h2>
+<ol>
+    <li>Wszelkie działania podejmowane przez Użytkowników w ramach Serwisu, a także cel tych działań,
+        powinny być zgodne z obowiązującymi przepisami prawa, zasadami współżycia społecznego i dobrymi obyczajami, w szczególności
+        zakazane jest dostarczanie przez Użytkownika treści o charakterze bezprawnym.</li>
+    <li>Użytkownik ponosi pełną odpowiedzialność za swoje działania, w tym za treści, jakie zamieszcza w Serwisie.</li>
+    <li>Treści tworzone przez Użytkownika powinny być zredagowane w czytelny sposób, nie mogą mieć charakteru reklamowego i nie mogą naruszać obowiązujących przepisów prawa,
+        zasad współżycia społecznego, dobrych obyczajów (w tym dobrych praktyk) oraz praw osób trzecich, w szczególności nie mogą zawierać:
+    <ul>
+        <li>wypowiedzi wulgarnych lub obraźliwych, w tym dotyczących innych Użytkowników JopPortal</li>
+        <li>wypowiedzi naruszających zasady dobrego wychowania i netykiety,</li>
+        <li>treści propagujących przemoc, treści drastycznych, bądź nawołujących do szerzenia nienawiści, rasizmu,
+            ksenofobii lub konfliktów między narodami,</li>
+        <li>treści naruszających dobra osobiste (w szczególności wizerunku) lub prawa autorskie osób trzecich,</li>
+        <li>treści o charakterze pornograficznym.</li>
+    </ul>
+    </li>
+    <li>Niedozwolone jest zamieszczanie w Serwisie jobportal.pl linków do stron internetowych, na których zawarte są treści, o których mowa w punkcie 5.3. powyżej.</li>
+    <li>Użytkownik poprzez umieszczenie danych, wizerunku, komentarzy lub innych treści w Serwisie wyraża zgodę na wykorzystywanie ich przez Spółkę na potrzeby prowadzenia Serwisu oraz przez innych Użytkowników w zakresie ich osobistego użytku przez czas nieokreślony.</li>
+    <li>Użytkownicy są zobowiązani do powstrzymania się od jakichkolwiek działań mających na celu manipulowanie treściami lub wynikami Znalezisk w Serwisie jobportal, do nie spamowania Serwisu jobportal.pl oraz do powstrzymywania się od
+        jakichkolwiek działań mogących utrudnić lub zakłócić funkcjonowanie Serwisu i korzystanie z usług Serwisu w sposób uciążliwy dla innych Użytkowników.</li>
+    <li>Użytkownik może zamieszczać jedynie zdjęcia do których publikacji posiada stosowne prawa. Użytkownik wyraża zgodę na rozpowszechnianie i publiczne udostępnianie jego własnego wizerunku, oraz innych zamieszczonych przez siebie zdjęć w Serwisie  na zasadzie wskazanej w zdaniu uprzednim. Jeżeli zdjęcie przedstawia inną osobę, Użytkownik powinien otrzymać zgodę takiej osoby na rozpowszechnianie i publiczne udostępnianie jej wizerunku.</li>
+</ol>
+<h2>5.Rola operatora Serwisu jobportal.pl</h2>
+<ol>
+    <li>W ramach Serwisu, Spółka udostępnia Użytkownikom odpowiednie narzędzia i miejsce na stronach internetowych Serwisu JobPortal w celu umożliwienia im korzystania z jego funkcjonalności.</li>
+    <li>Spółka nie ponosi odpowiedzialności za działania Użytkowników w ramach Serwisu, ani za treść wszelkich danych zamieszczanych przez Użytkowników w Serwisie .</li>
+    <li>Spółka nie ponosi odpowiedzialności za przechowywane dane, o ile nie wie o bezprawnym charakterze tych danych lub związanej z nimi działalności, a w razie otrzymania urzędowego zawiadomienia
+        lub uzyskania wiarygodnej wiadomości o bezprawnym charakterze danych lub związanej z nimi działalności niezwłocznie uniemożliwi dostęp do tych danych.
+        W przypadku uniemożliwienia dostępu do danych z uwagi na uzyskaną wiarygodną wiadomość o ich bezprawnym charakterze Spółka zawiadomi Użytkownika w ramach jego Konta.</li>
+    <li>W uzasadnionych przypadkach Spółka może usunąć lub w odpowiedni sposób zredagować treści umieszczane przez Użytkowników, jeżeli ich zamieszczenie w Serwisie jobportal.pl narusza postanowienia Regulaminu. Spółka nie ma jednak obowiązku weryfikacji jakichkolwiek danych zamieszczanych przez Użytkowników w Serwisie.</li>
+    <li> W uzasadnionych przypadkach i zakresie Spółka może usunąć konto użytkownika</li>
+    <li>Spółka dokłada należytych starań w celu zapewnienia prawidłowego i nieprzerwanego funkcjonowania Serwisu Wykop.pl, jednakże zastrzega możliwość czasowego wstrzymania, w niezbędnym zakresie i w uzasadnionych przypadkach, pracy Serwisu JobPortal
+        ze względów technicznych lub przyczyn niezależnych od Spółki. Spółka stara się ograniczyć negatywne skutki zaistniałych okoliczności.</li>
+</ol>
+<h2>Ochrona prywatności</h2>
+<ol>
+    <li> Administratorem danych osobowych w rozumieniu ustawy z dnia 29 sierpnia 1997 r. o ochronie danych osobowych (tj. Dz.U. z 2002 roku, nr 101, poz. 926 z późn. zm.), w odniesieniu do danych Użytkowników, jest Firma XXX. Dane osobowe Użytkownika mogą być przekazane Spółce przez Użytkownika lub przez podmioty prowadzące serwisy zewnętrzne, w tym Facebook, w związku z logowaniem się Użytkownika w Serwisie JobPortal.</li>
+    <li>Dane osobowe Użytkowników są przetwarzane przez Spółkę zgodnie z prawem, w tym zgodnie z przepisami ustawy o ochronie danych osobowych i ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną (Dz.U. z 2002 roku, nr 144, poz. 1204 z późn. zm.), w celu świadczenia przez Spółkę usług w ramach Serwisu oraz w celach marketingowych związanych z funkcjonowaniem przedsiębiorstwa Spółki (w tym Serwisu jobportal.pl), a także związanych ze świadczeniem usług przez Spółkę. Podanie danych osobowych przez Użytkownika jest dobrowolne.</li>
+    <li>Spółka zapewnia Użytkownikom realizację uprawnień wynikających z ustawy o ochronie danych osobowych, w tym prawa dostępu do treści własnych danych osobowych
+        i ich poprawiania oraz prawa do kontroli przetwarzania własnych danych osobowych na zasadach opisanych w przedmiotowej ustawie. W ramach realizacji prawa do kontroli
+        przetwarzania własnych danych osobowych, Użytkownik ma w szczególności prawo do wniesienia pisemnego, umotywowanego żądania zaprzestania przetwarzania danych osobowych ze względu na swoją szczególną sytuację, a także wniesienia sprzeciwu wobec przetwarzania swoich danych, gdy Spółka przetwarza je gdy jest to niezbędne dla wypełnienia prawnie usprawiedliwionych celów realizowanych przez Spółkę lub gdy Spółka zamierza je przetwarzać w celach marketingowych, lub wobec przekazywania przez Spółkę danych osobowych innemu niż Spółka administratorowi danych.</li>
+    <li>Dane osobowe Użytkownika mogą być przekazywane podmiotom uprawnionym do ich otrzymania na mocy obowiązujących przepisów prawa, w tym właściwym organom wymiaru sprawiedliwości. Dane osobowe Użytkownika mogą być także przekazywane – w koniecznym zakresie – podmiotom trzecim (w tym podmiotom wykonującym na zlecenie Spółki czynności dotyczące usług świadczonych w ramach Serwisu), jak też mogą być udostępniane za zgodą Użytkownika innym Użytkownikom.</li>
+    <li> Dane osobowe Użytkowników są chronione przez Spółkę przed ich udostępnieniem osobom nieupoważnionym, a także innymi przypadkami ich ujawnienia albo utraty oraz przed zniszczeniem lub nieuprawnioną modyfikacją wskazanych danych poprzez stosowanie odpowiednich zabezpieczeń organizacyjnych, a także zabezpieczeń o charakterze technicznym i programistycznym, w szczególności systemów szyfrowania danych.</li>
+</ol>
+<h2>8. Postępowanie reklamacyjne</h2>
+<ol>
+    <li>Użytkownik może zgłaszać reklamacje dotyczące opisanego w Regulaminie funkcjonowania Serwisu JobPortal.</li>
+    <li>Reklamacje można zgłaszać pisemnie, w formie listu poleconego, na adres: ul.Grunwaldzka 40, 00-000 Poznań, bądź poprzez wysłanie wiadomości na adres e-mail: jobportal@kontakt.pl</li>
+    <li>Zgłoszenie reklamacji powinno zawierać wskazanie nazwy, pod jaką Użytkownik występuje w Serwisie, jego adres e-mail przypisany do Konta oraz opis zdarzenia będącego przyczyną reklamacji. Jeżeli przekazane w reklamacji dane lub informacje wymagają uzupełnienia,
+        przed rozpatrzeniem reklamacji Spółka zwraca się do Użytkownika o jej uzupełnienie we wskazanym zakresie.</li>
+    <li>Reklamacje zostaną rozpatrzone w terminie 14 dni od daty otrzymania przez Spółkę prawidłowo złożonej reklamacji (zawierającej wymagane elementy i niewymagającej uzupełnienia).</li>
+    <li>Użytkownik otrzyma informację o sposobie rozpatrzenia reklamacji drogą korespondencji elektronicznej, na adres e-mail przypisany do jego Konta.</li>
+</ol>
+<h2>Zakończenie korzystania z Serwisu JobPortal
+</h2>
+<ol>
+    <li>Użytkownik może rozwiązać umowę o świadczenie usług drogą elektroniczną na warunkach określonych w Regulaminie w każdym czasie.</li>
+    <li>Oświadczenie o rozwiązaniu umowy Użytkownik może złożyć poprzez skorzystanie z ustawień dostępnych w profilu,w formie elektronicznej poprzez wysłanie oświadczenia na adres e-mail: xxxx@xxxx lub poprzez skorzystanie z formularza kontaktowego.</li>
+    <li>Spółka może rozwiązać umowę o świadczenie usług drogą elektroniczną w trybie natychmiastowym gdy:
+    <ul>
+        <li>Użytkownik narusza postanowienia Regulaminu, bądź zaakceptowanych przez Użytkownika odrębnych regulaminów innych usług związanych z Serwisem i świadczonych przez Spółkę, lub</li>
+        <li>Użytkownik podał dane lub złożył oświadczenia nieprawdziwe, nieaktualne, nieprawidłowe bądź niepełne lub podał dane innych osób</li>
+        <li> W innych niż wskazane w powyższym punkcie 9.3 sytuacjach Spółka uprawniona jest do rozwiązania umowy z zachowaniem 14-dniowego okresu wypowiedzenia.</li>
+        <li>Konsekwencją rozwiązania umowy jest usunięcie Konta, które wraz z jej zawarciem zostało utworzone. Usunięcie Konta nie powoduje automatycznego usunięcia wszystkich treści, jakie Użytkownik zamieścił w Serwisie; Spółka, z zastrzeżeniem jej uprawnień określonych w powyższym punkcie 6, nie usuwa w takim przypadku zamieszczonych Znalezisk, komentarzy i oddanych głosów.</li>
+    </ul>
+</li>
+</ol>
+<h2>10. Postanowienia końcowe</h2>
+<ol>
+    <li>Regulamin jest udostępniany nieprzerwanie na stronie internetowej Serwisu w sposób umożliwiający Użytkownikom jego pozyskanie, odtwarzanie i utrwalanie jego treści poprzez wydrukowanie lub zapisanie na nośniku w każdej chwili.</li>
+    <li>W przypadku zmiany niniejszego Regulaminu, Spółka poinformuje o tym na stronach Serwisu, a w odniesieniu do Użytkowników.</li>
+    <li>Zmiany Regulaminu wchodzą w życie w terminie określonym przez Spółkę, nie krótszym jednak niż 14 dni od dnia ogłoszenia o zmianach w Serwisie oraz od dnia przesłania stosownego powiadomienia o zmianach do Użytkowników.</li>
+    <li>W przypadku braku akceptacji nowego Regulaminu, Użytkownik uprawniony jest do rozwiązania, na zasadach określonych w powyższych punktach 9.1 i 9.2, umowy o świadczenie usług drogą elektroniczną na warunkach określonych w Regulaminie.</li>
+    <li>We wszystkich sprawach nieuregulowanych w niniejszym Regulaminie zastosowanie znajdują przepisy powszechnie obowiązującego prawa polskiego, a w szczególności przepisy kodeksu cywilnego, ustawy o ochronie danych osobowych oraz ustawy o świadczeniu usług drogą elektroniczną.</li>
+    <li> ile bezwzględnie obowiązujące przepisy prawa nie stanowią inaczej, prawem właściwym dla całości umowy o świadczenie usług drogą elektroniczną na warunkach określonych w Regulaminie jest prawo polskie.</li>
+</ol>
+<div class="footer">
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li><a jsf:action="/Pages/about.xhtml?faces-redirect=true" jsfc="h:commandLink">O nas</a></li>
+            <li><a jsf:action="/Pages/privacy.xhtml?faces-redirect=true" jsfc="h:commandLink">Prywatność</a></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

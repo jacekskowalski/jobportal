@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head jsfc="h:head">
+    <link type="text/css" rel="stylesheet" href="register.css"/>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script type="text/javascript" src="validation.js"   ></script>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+
+        }
+        #buttons{
+            position:relative;
+            margin-top:150px;
+            margin-left:30px;
+            width:200px;
+            height:500px;
+        }
+        .btn{
+            color: white;
+            background-color: cadetblue;
+            padding:0px;
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+
+        .nav form{
+            margin-left: 60%;
+        }
+
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+        }
+
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+   #TableDiv{
+       position:absolute;
+       top:100px;
+       left:250px;
+    font-size: small;
+       }
+        .mainmenu li{
+            position: relative;
+        }
+        .mainmenu li:hover >.submenu{
+            display:block ;
+
+        }
+        .mainmenu li:hover >.submenu1{
+            display:block ;
+
+        }
+        .mainmenu li> .submenu{
+            display:none;
+            position: absolute;
+            top:30px;
+            left:0%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+        .mainmenu li> .submenu1 {
+            display:none;
+            position: absolute;
+            top:30px;
+            left:25%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+        .mylist tr,  .mylist ui-datatable-odd, .mylist th {
+            background-color: white;}
+    </style>
+</head>
+<body jsfc="h:body">
+<div class="nav" >
+<form action="#" jsfc="h:form">
+    <ul class="mainmenu">
+
+        <li><a jsf:action="#{admin.logout}" jsfc="h:commandLink">Wyloguj</a></li>
+    </ul>
+</form>
+</div>
+<div id="buttons">
+   <form action="#" jsfc="h:form">
+        <h2>Wybierz Dane</h2>
+       <h:selectOneRadio value="#{admin.tableName}" layout="pageDirection">
+          <f:selectItem itemValue = "1" itemLabel = "Użytkownicy" />
+            <f:selectItem itemValue = "2" itemLabel = "Klienci" />
+            <f:selectItem itemValue = "3" itemLabel = "Wiadomości" />
+            <f:selectItem itemValue = "4" itemLabel = "Ogłoszenia" />
+            <f:selectItem itemValue = "5" itemLabel = "Historia" />
+            <f:selectItem itemValue = "6" itemLabel = "Kontakt" />
+        </h:selectOneRadio>
+        <p><h:commandButton type="submit"  value="Wybierz"/></p>
+    </form>
+
+</div>
+<div id="TableDiv">
+    <h:form id="myform1" method="post" rendered="#{admin.tableName eq '1'}">
+        <p:dataTable value="#{admin.us}" id="check1" var="dataItem" styleClass="mylist"  paginator="true" rows="10">
+
+            <p:column headerText="Imie">
+                <h:outputText value="#{dataItem.name}"/>
+            </p:column>
+
+            <p:column headerText="Nazwisko">
+                <h:outputText value="#{dataItem.lastname}" />
+            </p:column>
+
+            <p:column headerText="Email">
+                <h:outputText value="#{dataItem.email}" />
+            </p:column>
+
+            <p:column headerText="Hasło">
+
+                <h:outputText value="#{dataItem.password}" />
+            </p:column>
+
+            <p:column headerText="DataUr">
+                <h:outputText value="#{dataItem.birth}" />
+            </p:column>
+            <p:column headerText="Id">
+
+                <h:outputText value="#{dataItem.id}" />
+            </p:column>
+            <p:column>
+                <p:commandButton  value="Usuń" id="btn1" update=":myform1:check1" styleClass="btn"
+                                  action="#{admin.deleteUser(dataItem.id,dataItem)}"></p:commandButton>
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+    <h:form id="myform2" method="post" rendered="#{admin.tableName eq '2'}">
+
+        <p:dataTable value="#{admin.client.allRecords}" id="check2" styleClass="mylist"  var="dataItem" paginator="true" rows="10">
+
+            <p:column headerText="Nazwa">
+                <h:outputText value="#{dataItem.company}" />
+            </p:column>
+
+            <p:column headerText="Ulica">
+
+                <h:outputText value="#{dataItem.street}" />
+            </p:column>
+
+            <p:column headerText="Kod">
+                <h:outputText value="#{dataItem.zipcode}"/>
+            </p:column>
+
+            <p:column headerText="Miasto" >
+
+                <h:outputText value="#{dataItem.city}" />
+            </p:column>
+
+            <p:column headerText="Email">
+
+                <h:outputText value="#{dataItem.email}" />
+            </p:column>
+
+            <p:column headerText="Hasło">
+                <h:outputText value="#{dataItem.password}" />
+            </p:column>
+
+            <p:column headerText="CompanyId">
+                <h:outputText value="#{dataItem.companyId}" />
+            </p:column>
+
+            <p:column headerText="DataZał">
+                <h:outputText value="#{dataItem.joinDate}" />
+            </p:column>
+            <p:column>
+                <p:commandButton  value="Usuń" id="btn2" update=":myform2:check2" styleClass="btn"
+                                  action="#{client.clientDelete(dataItem.companyId,dataItem)}"></p:commandButton>
+            </p:column>
+
+        </p:dataTable>
+
+    </h:form>
+    <h:form id="myform3" method="post" rendered="#{admin.tableName eq '3'}">
+
+    <p:dataTable value="#{admin.lis}" styleClass="mylist"  var="dataItem"  id="check3" paginator="true" rows="10">
+
+        <p:column headerText="ID">
+            <h:outputText value="#{dataItem.id}" />
+        </p:column>
+
+        <p:column headerText="Treść">
+            <h:outputText value="#{dataItem.textmess}" />
+        </p:column>
+
+        <p:column headerText="Data">
+            <h:outputText value="#{dataItem.senddate}" />
+        </p:column>
+
+        <p:column headerText="Nadawca">
+            <h:outputText value="#{dataItem.userid}"/>
+        </p:column>
+
+        <p:column headerText="Odbiorca">
+            <h:outputText value="#{dataItem.receiver}"/>
+        </p:column>
+
+        <p:column headerText="Nr_Ref">
+            <h:outputText value="#{dataItem.nrref}"/>
+        </p:column>
+
+        <p:column>
+            <p:commandButton  value="Usuń" id="btn3" update=":myform3:check3"
+                              action="#{admin.deleteMessage(dataItem.userid,dataItem.receiver,dataItem.nrref,dataItem)}"></p:commandButton>
+        </p:column>
+    </p:dataTable>
+    </h:form>
+    <h:form id="myform4" method="post" rendered="#{admin.tableName eq '4'}">
+        <p:dataTable value="#{admin.allRecords}" id="check4" styleClass="mylist"   var="dataItem" paginator="true" rows="10">
+
+            <p:column headerText="Stanowisko">
+                <h:outputText value="#{dataItem.jobPos}" />
+            </p:column>
+
+            <p:column headerText="Miasto">
+                <h:outputText value="#{dataItem.city}"/>
+            </p:column>
+
+            <p:column headerText="Nr_Ref">
+                <h:outputText value="#{dataItem.nrref}"  />
+            </p:column>
+
+            <p:column headerText="Firma">
+                <h:outputText value="#{dataItem.company}" />
+            </p:column>
+
+            <p:column headerText="Wynagrodzenie">
+
+                <h:outputText value="#{dataItem.salary}" />
+            </p:column >
+            <p:column headerText="Opis">
+                <h:outputText value="#{dataItem.message}" />
+            </p:column>
+
+            <p:column headerText="DataWyst">
+                <h:outputText value="#{dataItem.dataWyst}" />
+            </p:column>
+
+            <p:column headerText="DataZakon">
+
+                <h:outputText value="#{dataItem.datZakon}" />
+            </p:column>
+            <p:column>
+                <p:commandButton  value="Usuń" id="btn4" update=":myform4:check4" styleClass="btn"
+                                  action="#{admin.deleteOffer(dataItem.nrref,dataItem.clientid,dataItem)}"></p:commandButton>
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+    <h:form id="myform5" method="post" rendered="#{admin.tableName eq '5'}">
+
+        <p:dataTable value="#{admin.history.hist}" var="dataItem" styleClass="mylist"  id="check5"   paginator="true" rows="10">
+
+            <p:column headerText="ClientId">
+                <h:outputText value="#{dataItem.clientid}"/>
+
+            </p:column>
+
+            <p:column headerText="AppDate">
+
+                <h:outputText value="#{dataItem.appdate}" />
+            </p:column>
+
+            <p:column headerText="Stanowisko">
+                <h:outputText value="#{dataItem.position}" />
+            </p:column>
+
+            <p:column>
+                <p:commandButton  value="Usuń" id="btn5" update=":myform5:check5" styleClass="btn"
+                                  action="#{history.deleteHistory(dataItem.clientid,dataItem)}"></p:commandButton>
+            </p:column>
+
+        </p:dataTable>
+
+    </h:form>
+    <h:form id="myform6" method="post" rendered="#{admin.tableName eq '6'}">
+        <p:dataTable value="#{contact.concon}" id="check6" styleClass="mylist"  var="dataItem" paginator="true" rows="10"
+                     sortBy="#{dataItem.name}" expandableRowGroups="true">
+
+            <p:column headerText="Nadawca">
+                <h:outputText value="#{dataItem.name}" />
+            </p:column>
+
+            <p:column headerText="Email">
+                <h:outputText value="#{dataItem.email}" />
+            </p:column>
+
+            <p:column headerText="Treść" >
+                <h:outputText value="#{dataItem.message}"  />
+            </p:column>
+
+            <p:column headerText="Data">
+                <h:outputText value="#{dataItem.getday}"  />
+            </p:column>
+
+       <p:column>
+                <p:commandButton process="check6"  value="Usuń" id="btn6" update=":myform6:check6"
+                                 action="#{contact.delete(dataItem.name,dataItem.email,dataItem)}">
+                </p:commandButton>
+       </p:column>
+
+        </p:dataTable>
+
+    </h:form>
+</div>
+</body>
+</html>

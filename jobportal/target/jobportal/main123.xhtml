@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Strona logowania</title>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+
+        }
+        #validation {
+            position:relative;
+            margin:15% 0 0 40%;
+            width:400px;
+            box-sizing: border-box;
+        }
+        .input{
+            float:right;
+            padding:0.5em;
+            letter-spacing: 0.1em;
+            border-radius: 5px;
+        }
+        .btn{
+            font-size:1em;
+            display:inline-block;
+            color:white;
+            background-color:cadetblue ;
+            float: right ;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div id="validation">
+
+        <h2>Zaloguj się</h2>
+        <h:form method="post" id="form1"   >
+
+            <p>Login: <h:inputText id="email" styleClass="input" value="#{admin.email}" style="width: 200px" required="true" requiredMessage="Pole wymagane"></h:inputText></p>
+
+            <!--  <f:validateRegex pattern="[a-z0-9+._%]+@[a-z0-9.]+[.][a-z]{2,3}$"></f:validateRegex> </h:inputText> </p>-->
+            <p>Hasło:  <h:inputSecret id="pswd" styleClass="input" value="#{admin.password}" style="width: 200px" required='true' requiredMessage="Pole wymagane">
+                <!--    <f:validateRegex pattern="[a-zA-Z0-9!@#$%^&amp;*)(+=._]{7,}$"></f:validateRegex>-->
+            </h:inputSecret> </p>
+            <h:commandButton  id="btn" styleClass="btn" value="Wyślij" onclick="validate()" action="#{admin.checkForm}">
+            </h:commandButton>
+        </h:form>
+        <h2 id="errorMessage"></h2>
+    </div>
+</h:body>
+</html>

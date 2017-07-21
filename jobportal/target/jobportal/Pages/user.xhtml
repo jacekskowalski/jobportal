@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<head jsfc="h:head">
+    <title>Strona użytkownika</title>
+    <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet"/>
+    <script type="text/javascript" >
+
+    </script>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+        ul #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            color: rgb(47,79,79);
+            position:absolute;
+            top:0;
+            left:1.5em;
+
+        }
+        ul #logo a{
+            border-right:none;
+            width:200px;
+        }
+
+        .footer{
+            position: absolute;
+            left:0%;
+            bottom:0;
+            width:100%;
+            height:50px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+
+        }
+        .nav form{
+            margin-left: 60%;
+        }
+        .footer form{
+            margin-left:30%;
+        }
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+        }
+
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        .footer a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+        #dataSection{
+            width:300px;
+            position:absolute;
+            top:100px;
+            left:2%;
+            box-sizing: border-box;
+            font-size: small;
+        }
+        #dataSection input[type="text"]{
+            background-color: white ;
+            float: right;
+            border-radius: 5px;
+            padding:5px;
+        }
+
+        #accordion2{
+            position: absolute;
+           top: 100px;
+           left:40%;
+            width:400px;
+            font-size: small;
+        }
+#accordion3{
+    position: absolute;
+    top: 100px;
+    left:70%;
+    width: 400px;
+    font-size: small;
+}
+.buttons{
+    color: white;
+    background-color: cadetblue;
+    padding:0px;
+}
+#addFile{
+    position:absolute;
+    bottom:100px;
+    left:2%;
+}
+        .mylist tr,  .mylist ui-datatable-odd, .mylist th {
+            background-color: white;}
+
+        .submitBtn{
+            color: white;
+            background-color: cadetblue;
+            padding:5px;
+            border-radius: 5px;
+            font-size: medium;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        </style>
+</head>
+<body jsfc="h:body">
+<f:view>
+<div class="nav" >
+
+    <h:form>
+        <ul>
+            <li id="logo"><a jsf:action="/index.xhtml?faces-redirect=true" jsfc="h:commandLink">jobportal</a></li>
+            <li><a jsf:action="#{user.logout}" jsfc="h:commandLink">Wyloguj</a></li>
+            <li><a jsf:action="/Pages/contact.xhtml" jsfc="h:commandLink">Kontakt</a></li>
+        </ul>
+    </h:form>
+
+</div>
+<div id="dataSection" >
+    <h:form id="form1"  >
+
+      <h3>Twoje dane: </h3>
+        <h:panelGrid columns="3">
+            <p:outputLabel for="fn"  >Imię:</p:outputLabel>
+        <p:inputText id="fn"  value="#{user.name}" style="float:right" >
+                 <f:validateRegex pattern="[A-Z][\p{Alpha}]+"></f:validateRegex>
+        </p:inputText>
+            <p:message for="fn" id="msgId1" showDetail="true"  style="color:red;float:right"/>
+
+            <p:outputLabel for="ln"  >Nazwisko:</p:outputLabel>
+       <p:inputText id="ln"  value="#{user.lastname}" style="float:right" required="true" requiredMessage="Pole wymagane"  />
+            <p:message for="ln" id="msgId2" showDetail="true"  style="color:red;float:right"/>
+
+            <p:outputLabel for="email"  >Email:</p:outputLabel>
+        <p:inputText id="email"  value="#{user.email}"  style="float:right" required="true" requiredMessage="Pole wymagane" />
+            <p:message for="email" id="msgId3" showDetail="true"  style="color:red;float:right"/>
+
+            <p:outputLabel for="pswd"  >Hasło:</p:outputLabel>
+           <p:password id="pswd" redisplay="true" value="#{user.password}"  required="true" requiredMessage="Pole wymagane"/>
+            <p:message for="pswd" id="msgId4" showDetail="true"  style="color:red;float:right"/>
+
+
+            <h:outputLabel for="bir"  >Data ur.:</h:outputLabel>
+         <p:inputText id="bir"  value="#{user.birth}" style="float:right" required="true" requiredMessage="Pole wymagane"   />
+            <h:message for="bir" id="msgId5" showDetail="true"  style="color:red;float:right"/>
+
+        </h:panelGrid>
+        <br/>
+   <p:commandButton type="submit" styleClass="buttons" update="form1" value="Zapisz"  action="#{user.saveData}" >
+
+    </p:commandButton>
+
+    </h:form>
+</div>
+<div id="addFile">
+    <h:form id="senddoc" method="post" enctype="multipart/form-data">
+    <h:inputFile value="#{fileUpload.file}" style="padding:5px;color: white;font-size: 1em" required="true" requiredMessage="Nie wybrano pliku" >
+        <f:validator validatorId="fileValidator"/>
+    </h:inputFile>
+        <br/>
+    <h:commandButton type="submit" value="Dodaj" styleClass="submitBtn" action="#{fileUpload.upload}"  >
+    </h:commandButton>
+    </h:form>
+</div>
+
+<div id="accordion2">
+    <h:form id="form2">
+<h3>Chat</h3>
+                <h:panelGrid columns="2">
+            <p:inputText id="field1" style="width:200px" value="#{messenger.nrref}" placeholder="Numer referencyjny" required="true" requiredMessage="Pole wymagane"/>
+            <p:message for="field1"  showDetail="true"  style="color:red;float:right"/>
+
+             <p:inputText id="field2"  style="width:200px" value="#{messenger.receiver}" placeholder="Nazwa firmy" required="true" requiredMessage="Pole wymagane"/>
+             <p:message for="field2"  showDetail="true"  style="color:red;float:right"/>
+               <p:inputTextarea id="tarea"  value="#{messenger.textmess}" required="true" requiredMessage="Pole wymagane"
+                       style="width:200px" rows="4" counter="display" maxlength="160"  counterTemplate="Pozostało znaków {0}" autoResize="false" />
+                <h:outputText id="display" />
+                <p:message for="tarea"  showDetail="true"  style="color:red;float:right"/>
+                </h:panelGrid>
+                <p:commandButton type="submit" value="Wyślij" update="form2"  action="#{messenger.createMessage}"  styleClass="buttons" >
+                    </p:commandButton>
+                     
+    </h:form>
+    </div>
+<div id="accordion3">
+    <h:form id="form3">
+        <p:accordionPanel id="apanel">
+
+            <p:tab title="Historia rozmów">
+                <p:dataScroller value="#{user.me}"  id="messengerscroller" var="scrollit" chunkSize="3" >
+
+                            <f:facet name="loader">
+                                <p:commandButton type="button" styleClass="buttons" value="Dalej" icon="ui-icon-circle-triangle-s"/>
+                            </f:facet>
+                    <h:panelGrid columns="1" >
+                        <p:outputPanel>
+                            <h:panelGrid columns="1" >
+                                <h:outputText value="#{scrollit.textmess}" style="font-size: 0.7em;float:left" />
+                                <h:outputText value="#{scrollit.senddate}" style="font-size: 0.7em;float:left"/>
+                                <h:outputText value="#{scrollit.nrref}" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
+            </p:tab>
+        <p:tab title="Aplikuj">
+            <h:panelGrid columns="3">
+                <p:outputLabel for="nrref">Numer referencyjny</p:outputLabel>
+             <p:inputText id="nrref" value="#{sendCV.nrref}" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="nrref"  showDetail="true"  style="color:red;float:right"/>
+
+                <p:outputLabel for="compname">Nazwa firmy</p:outputLabel>
+            <p:inputText value="#{sendCV.compname}" id="compname" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="compname"  showDetail="true"  style="color:red;float:right"/>
+            </h:panelGrid>
+        <br/>
+        <br/>
+        <h3>Wybierz plik</h3>
+        <h:selectOneRadio value="#{sendCV.docname}" >
+                <f:selectItems value="#{user.listfiles}"/>
+                </h:selectOneRadio>
+
+    <p:commandButton type="submit" action="#{sendCV.sendApplication}" resetValues="true" value="Wyślij" style="color: white;background-color: cadetblue;padding:0;">
+          
+    </p:commandButton>
+
+        </p:tab>
+            <p:tab title="Wysłane aplikacje">
+                <p:dataScroller value="#{user.hi}" var="templist0" styleClass="mylist" rendered="#{ history.userhist.size() gt 0}"
+                                mode="inline"   chunkSize="3">
+                    <p:outputPanel>
+                         <h:panelGrid columns="2" >
+               <h:outputText value="#{templist0.appdate}"  style="float:left;font-weight: bold" />
+               <h:outputText value="#{templist0.position}"  style="float:right;font-weight: bold"/>           
+                    </h:panelGrid>
+                    </p:outputPanel>
+                       
+                </p:dataScroller>
+            </p:tab>
+
+            <p:tab title="Lista plików">
+                <p:dataTable value="#{user.listfiles}" rendered="#{not empty user.listfiles}" var="fl" id="dt2" emptyMessage="Brak plików">
+                    <p:column>
+                        <h:outputText value="#{fl}"/>
+
+                    </p:column>
+                    <p:column>
+                        <h:commandButton value="Usuń" action="#{user.deleteFile(fl)}"
+                                         style="color: white;background-color: cadetblue;padding:5px;border-radius: 5px" >
+                            <f:ajax execute="dt2" render="dt2"/>
+                        </h:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+            </p:tab>
+        </p:accordionPanel>
+
+    </h:form>
+</div>
+
+
+<div class="footer">
+    <h:form >
+        <ul>
+            <li><a jsf:action="/Pages/about.xhtml" jsfc="h:commandLink">O nas</a></li>
+            <li><a jsf:action="/Pages/rules.xhtml" jsfc="h:commandLink">Regulamin</a></li>
+            <li><a jsf:action="/Pages/privacy.xhtml" jsfc="h:commandLink">Prywatność</a></li>
+        </ul>
+    </h:form>
+</div>
+</f:view>
+</body>
+</html>

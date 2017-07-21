@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head jsfc="h:head">
+    <title>Strona klienta</title>
+    <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet"/>
+       <script type="text/javascript" >
+
+    </script>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer{
+            position: fixed;
+            left:0%;
+            bottom:0;
+            width:100%;
+            height:50px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+
+        }
+        .nav form{
+            margin-left: 50%;
+        }
+        .footer form{
+            margin-left:30%;
+        }
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+        }
+
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        .footer a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+        ul #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            color: rgb(47,79,79);
+            position:absolute;
+            top:0;
+            left:1.5em;
+
+        }
+        ul #logo a{
+            border-right:none;
+            width:200px;
+        }
+
+        #dataSection{
+            width:350px;
+            position:absolute;
+            top:20%;
+            left:2%;
+            box-sizing: border-box;
+        }
+
+     #form1   .buttons{
+            color: white;
+            background-color: cadetblue;
+            padding:0;
+
+        }
+.submitBtn{
+    color: white;
+    background-color: cadetblue;
+    padding:5px 10px 5px 10px;
+    border-radius: 8px;
+    font-size: large;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+        #accordion1{
+            position: absolute;
+            top: 15%;
+            left:40%;
+            width:500px;
+            font-size: small;
+        }
+        .mylist tr,  .mylist ui-datatable-odd, .mylist th {
+            background-color: white;
+        }
+    </style>
+</head>
+<body jsfc="h:body" >
+<div class="nav" >
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li id="logo"><a jsf:action="/index.xhtml?faces-redirect=true" jsfc="h:commandLink">jobportal</a></li>
+            <li><a jsf:action="#{client.logout}" jsfc="h:commandLink">Wyloguj</a></li>
+            <li><a jsf:action="/Pages/addoffer.xhtml?faces-redirect=true" jsfc="h:commandLink">Dodaj</a></li>
+            <li><a jsf:action="/Pages/applications.xhtml?faces-redirect=true" jsfc="h:commandLink">Aplikacje</a></li>
+            <li><a jsf:action="/Pages/contact.xhtml?faces-redirect=true" jsfc="h:commandLink">Kontakt</a></li>
+        </ul>
+    </form>
+
+</div>
+<div id="dataSection" style="font-size: small">
+    <h:form id="form1" method="post">
+       <p:accordionPanel id="apanel">
+        <p:tab title="Twoje dane">
+            <h:panelGrid columns="3">
+
+                <p:outputLabel for="compName"  >Nazwa: </p:outputLabel>
+                <p:inputText id="compName" value="#{client.company}" style="float:right" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="compName" id="msgId1" showDetail="true"  style="color:red;float:right"/>
+
+                <h:outputLabel for="nip"  >PESEL/REGON</h:outputLabel>
+                <h:inputText id="nip" value="#{client.companyId}" style="border-radius:5px;padding:5px;float:right" readonly="true" />
+                <h:message for="compName" id="msgId2" showDetail="true"  style="color:red;float:right"/>
+
+                <p:outputLabel for="street"  >Ulica:</p:outputLabel>
+                <p:inputText id="street" value="#{client.street}" style="float:right" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="street" id="msgId3" showDetail="true"  style="color:red;float:right"/>
+
+                <p:outputLabel for="city"  >Miasto</p:outputLabel>
+                <p:inputText id="city" value="#{client.city}" style="float:right" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="city" id="msgId4" showDetail="true"  style="color:red;float:right"/>
+
+                <p:outputLabel for="zip"  >Kod pocztowy:</p:outputLabel>
+               <p:inputText id="zip" value="#{client.zipcode}" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="zip" id="msgId5" showDetail="true"  style="color:red;float:right"/>
+
+                <p:outputLabel for="email"  >Email:</p:outputLabel>
+                <p:inputText id="email" value="#{client.email}" required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="email" id="msgId6" showDetail="true"  style="color:red;float:right"/>
+
+                <p:outputLabel for="pswd"  >Hasło</p:outputLabel>
+                <p:password redisplay="true" id="pswd" value="#{client.password}"  required="true" requiredMessage="Pole wymagane"/>
+                <p:message for="pswd" id="msgId7" showDetail="true"  style="color:red;float:right"/>
+
+            </h:panelGrid>
+            <br/>
+             <p:commandButton type="submit" update="form1" styleClass="buttons"  value="Zapisz"  action="#{client.saveData}">
+
+        </p:commandButton>
+
+
+        </p:tab>
+            <p:tab title="Rozmowy">
+                <p:dataScroller value="#{client.me}"  id="messengerscroller" var="scrollit" chunkSize="3" >
+
+                            <f:facet name="loader">
+                                <p:commandButton type="button" styleClass="buttons" value="Dalej" icon="ui-icon-circle-triangle-s"/>
+                            </f:facet>
+                    <h:panelGrid columns="1" >
+                        <p:outputPanel>
+                            <h:panelGrid columns="1" >
+                                <h:outputText value="#{scrollit.textmess}" style="font-size: 0.7em;float:left" />
+                                <h:outputText value="#{scrollit.senddate}" style="font-size: 0.7em;float:left"/>
+                                <h:outputText value="#{scrollit.nrref}" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
+                     
+                  
+            </p:tab>
+        </p:accordionPanel>
+    </h:form>
+</div>
+<div id="accordion1">
+    <h:form id="form2">
+        <h3>Chat</h3>
+        <h:panelGrid columns="2">
+            <p:inputText id="field1" style="width:200px" value="#{messenger.nrref}" placeholder="Numer referencyjny" required="true" requiredMessage="Pole wymagane"/>
+            <p:message for="field1"  showDetail="true"  style="color:red;float:right"/>
+
+            <p:inputText id="field2"  style="width:200px" value="#{messenger.receiver}" placeholder="Imię i nazwisko" required="true" requiredMessage="Pole wymagane"/>
+            <p:message for="field2"  showDetail="true"  style="color:red;float:right"/>
+            <p:inputTextarea id="tarea"  value="#{messenger.textmess}" required="true" requiredMessage="Pole wymagane"
+                             style="width:200px" rows="4" counter="display" maxlength="160"  counterTemplate="Pozostało znaków {0}" autoResize="false" />
+             <h:outputText id="display" />
+            <p:message for="tarea"  showDetail="true"  style="color:red;float:right"/>
+        </h:panelGrid>
+        <p:commandButton type="submit" value="Wyślij"  action="#{messenger.replyForMessage}" update="form2" styleClass="buttons" >
+        </p:commandButton>
+         
+    </h:form>
+</div>
+
+<div class="footer">
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li><a jsf:action="/Pages/about.xhtml?faces-redirect=true" jsfc="h:commandLink">O nas</a></li>
+            <li><a jsf:action="/Pages/rules.xhtml?faces-redirect=true" jsfc="h:commandLink">Regulamin</a></li>
+            <li><a jsf:action="/Pages/privacy.xhtml?faces-redirect=true" jsfc="h:commandLink">Prywatność</a></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

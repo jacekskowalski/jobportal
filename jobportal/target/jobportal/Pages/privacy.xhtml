@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head jsfc="h:head">
+<title>Polityka Prywatności</title>
+    <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet"/>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            font: 1em Helvetica, sans-serif;
+            text-align: justify;
+
+        }
+        .nav{
+            position: absolute;
+            left:0%;
+            top: 0%;
+            width:100%;
+            height:60px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+
+        #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            float:left;
+            color: rgb(47,79,79);
+            margin-top:0;
+            margin-left:1.5em;
+        }
+        .footer{
+            position: fixed;
+            left:0%;
+            bottom: 0%;
+            width:100%;
+            height:50px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+
+        }
+        ol li{
+            margin-right:0.5em;
+        }
+        h2{
+            margin-left: 1em;
+        }
+        .nav form{
+            margin-left: 60%;
+        }
+        .footer form{
+            margin-left:30%;
+        }
+        a {
+            text-decoration: none;
+            display:block;
+        }
+        li {
+            list-style-type:none;
+        }
+
+        .nav a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        .footer a{
+            float:left;
+            width:100px;
+            font-size: 1em;
+        }
+        ul li a{
+            color: #069;
+            border-right: 1px solid #ccc;
+            padding: 8px 15px;
+            font-weight: bold;
+
+        }
+        ul li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+        ul #logo{
+            font: bold 2.5em 'Cuprum', sans-serif ;
+            color: rgb(47,79,79);
+            position:absolute;
+            top:0;
+            left:1.5em;
+
+        }
+        ul #logo a{
+            border-right:none;
+            width:200px;
+        }
+
+        .mainmenu li{
+            position: relative;
+        }
+        .mainmenu li:hover >.submenu{
+            display:block ;
+
+        }
+        .mainmenu li:hover >.submenu1{
+            display:block ;
+
+        }
+        .mainmenu li> .submenu{
+            display:none;
+            position: absolute;
+            top:30px;
+            left:0%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+        .mainmenu li> .submenu1 {
+            display:none;
+            position: absolute;
+            top:30px;
+            left:25%;
+            background-color: #f2f2f2;
+            padding: 0;
+        }
+    </style>
+</head>
+<body jsfc="h:body">
+<div class="nav" >
+
+    <form action="#" jsfc="h:form" >
+        <ul class="mainmenu">
+            <li id="logo"><a jsf:action="/index.xhtml?faces-redirect=true" jsfc="h:commandLink">jobportal</a></li>
+            <c:choose>
+                <c:when test="#{userID.ID['class'].name  eq 'java.lang.Integer'}">
+                    <li><h:link value="Profil" outcome="/Pages/user.xhtml?faces-redirect=true" /> </li>
+                </c:when>
+                <c:when test="#{userID.ID['class'].name  eq 'java.lang.String'}">
+                    <li><h:link value="Profil" outcome="/Pages/client.xhtml?faces-redirect=true" /> </li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="#"  >Zaloguj się</a>
+                        <ul class="submenu"  >
+                            <li><a jsf:action="/Pages/loginpr.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracownik</a></li>
+                            <li><a jsf:action="/Pages/loginem.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracodawca</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li><a href="#" >Zarejestruj</a>
+
+                        <ul class="submenu1">
+                            <li><a jsf:action="/Pages/signuppr.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracownik</a></li>
+                            <li><a jsf:action="/Pages/signupem.xhtml?faces-redirect=true" jsfc="h:commandLink">Pracodawca</a></li>
+                        </ul>
+
+                    </li>
+                </c:otherwise>
+            </c:choose>
+            <li><a jsf:action="contact.xhtml?faces-redirect=true" jsfc="h:commandLink">Kontakt</a></li>
+
+        </ul>
+    </form>
+
+</div>
+<h1>Polityka prywatności serwisu www.jobportal.com</h1>
+
+<h2>1. Informacje ogólne.</h2>
+<ol>
+    <li>Operatorem Serwisu www.jobportal.com jest … [pełne dane rejestrowe].</li>
+    <li>Serwis realizuje funkcje pozyskiwania informacji o użytkownikach i ich zachowaniu w następujący sposób:</li>
+</ol>
+<p>a. Poprzez dobrowolnie wprowadzone w formularzach informacje.</p>
+<p>b. Poprzez zapisywanie w urządzeniach końcowych pliki cookie (tzw. "ciasteczka").</p>
+<p>c. Poprzez gromadzenie logów serwera www przez operatora hostingowego OVH, funkcjonującego pod adresem www.ovh.com</p>
+<h2>2. Informacje w formularzach.</h2>
+<ol>
+    <li>Serwis zbiera informacje podane dobrowolnie przez użytkownika.</li>
+    <li>2. Serwis może zapisać ponadto informacje o parametrach połączenia (oznaczenie czasu, adres IP)</li>
+    <li>3. Dane w formularzu nie są udostępniane podmiotom trzecim inaczej, niż za zgodą użytkownika.</li>
+    <li>4. Dane podane w formularzu mogą stanowić zbiór potencjalnych klientów, zarejestrowany przez Operatora Serwisu w rejestrze prowadzonym przez Generalnego Inspektora Ochrony Danych Osobowych.</li>
+    <li>5. Dane podane w formularzu są przetwarzane w celu wynikającym z funkcji konkretnego formularza, np w celu dokonania procesu obsługi zgłoszenia serwisowego lub kontaktu handlowego.</li>
+    <li>6. Dane podane w formularzach mogą być przekazane podmiotom technicznie realizującym niektóre usługi – w szczególności dotyczy to przekazywania informacji o posiadaczu rejestrowanej domeny
+        do podmiotów będących operatorami domen internetowych (przede wszystkim Naukowa i Akademicka Sieć Komputerowa j.b.r – NASK), serwisów obsługujących płatności lub też innych podmiotów, z którymi Operator Serwisu w tym zakresie współpracuje.</li>
+</ol>
+<h2>3. Informacja o plikach cookies.</h2>
+<ol>
+    <li> Serwis korzysta z plików cookies.</li>
+    <li> Pliki cookies (tzw. „ciasteczka”) stanowią dane informatyczne, w szczególności pliki tekstowe, które przechowywane są w urządzeniu końcowym Użytkownika Serwisu
+        i przeznaczone są do korzystania ze stron internetowych Serwisu. Cookies zazwyczaj zawierają nazwę strony internetowej, z której pochodzą, czas przechowywania ich na urządzeniu końcowym oraz unikalny numer.</li>
+    <li> Podmiotem zamieszczającym na urządzeniu końcowym Użytkownika Serwisu pliki cookies oraz uzyskującym do nich dostęp jest operator Serwisu.</li>
+    <li> Pliki cookies wykorzystywane są w następujących celach:
+    <ul>
+        <li>a. tworzenia statystyk, które pomagają zrozumieć, w jaki sposób Użytkownicy Serwisu korzystają ze stron internetowych, co umożliwia ulepszanie ich struktury i zawartości;</li>
+        <li>b. utrzymanie sesji Użytkownika Serwisu (po zalogowaniu), dzięki której Użytkownik nie musi na każdej podstronie Serwisu ponownie wpisywać loginu i hasła;</li>
+        <li>c. określania profilu użytkownika w celu wyświetlania mu dopasowanych materiałów w sieciach reklamowych, w szczególności sieci Google.</li>
+    </ul>
+    </li>
+    <li> W ramach Serwisu stosowane są dwa zasadnicze rodzaje plików cookies: „sesyjne” (session cookies) oraz „stałe” (persistent cookies). Cookies „sesyjne” są plikami tymczasowymi, które przechowywane są w urządzeniu końcowym Użytkownika do czasu wylogowania, opuszczenia strony internetowej lub wyłączenia oprogramowania (przeglądarki internetowej). „Stałe” pliki cookies przechowywane są w urządzeniu końcowym Użytkownika przez czas określony w parametrach plików cookies lub do czasu ich usunięcia przez Użytkownika.</li>
+    <li> Oprogramowanie do przeglądania stron internetowych (przeglądarka internetowa) zazwyczaj domyślnie dopuszcza przechowywanie plików cookies w urządzeniu końcowym Użytkownika. Użytkownicy Serwisu mogą dokonać zmiany ustawień w tym zakresie. Przeglądarka internetowa
+    umożliwia usunięcie plików cookies. Możliwe jest także automatyczne blokowanie plików cookies Szczegółowe informacje na ten temat zawiera pomoc lub dokumentacja przeglądarki internetowej.</li>
+<li> Ograniczenia stosowania plików cookies mogą wpłynąć na niektóre funkcjonalności dostępne na stronach internetowych Serwisu.</li>
+<li> Pliki cookies zamieszczane w urządzeniu końcowym Użytkownika Serwisu i wykorzystywane mogą być również przez współpracujących z operatorem Serwisu reklamodawców oraz partnerów.</li>
+<li>. Zalecamy przeczytanie polityki ochrony prywatności tych firm, aby poznać zasady korzystania z plików cookie wykorzystywane w statystykach: Polityka ochrony prywatności Google Analytics</li>
+<li> Pliki cookie mogą być wykorzystane przez sieci reklamowe, w szczególności sieć Google, do wyświetlenia reklam dopasowanych do sposobu, w jaki użytkownik korzysta z Serwisu. W tym celu mogą zachować informację o ścieżce nawigacji użytkownika lub czasie pozostawania na danej stronie.</li>
+<li> W zakresie informacji o preferencjach użytkownika gromadzonych przez sieć reklamową Google użytkownik może przeglądać i edytować informacje wynikające z plików cookies przy pomocy narzędzia: https://www.google.com/ads/preferences/</li>
+</ol>
+<h2>4. Logi serwera.</h2>
+<ol>
+<li>. Informacje o niektórych zachowaniach użytkowników podlegają logowaniu w warstwie serwerowej. Dane te są wykorzystywane wyłącznie w celu administrowania serwisem
+    oraz w celu zapewnienia jak najbardziej sprawnej obsługi świadczonych usług hostingowych.</li>
+<li>2. Przeglądane zasoby identyfikowane są poprzez adresy URL. Ponadto zapisowi mogą podlegać:
+<ul>
+    <li>a. czas nadejścia zapytania,</li>
+    <li>b. czas wysłania odpowiedzi,</li>
+    <li>c. nazwę stacji klienta – identyfikacja realizowana przez protokół HTTP,</li>
+    <li>d. informacje o błędach jakie nastąpiły przy realizacji transakcji HTTP,</li>
+    <li>e. adres URL strony poprzednio odwiedzanej przez użytkownika (referer link) – w przypadku gdy przejście do Serwisu nastąpiło przez odnośnik,</li>
+    <li>f. informacje o przeglądarce użytkownika,</li>
+    <li>g. Informacje o adresie IP.</li>
+</ul>
+</li>
+<li>3. Dane powyższe nie są kojarzone z konkretnymi osobami przeglądającymi strony.</li>
+<li>4. Dane powyższe są wykorzystywane jedynie dla celów administrowania serwerem.</li>
+</ol>
+<h2>5. Udostępnienie danych.</h2>
+<p>1. Dane podlegają udostępnieniu podmiotom zewnętrznym wyłącznie w granicach prawnie dozwolonych.</p>
+<p>2. Dane umożliwiające identyfikację osoby fizycznej są udostępniane wyłączenie za zgodą tej osoby.</p>
+<p>3. Operator może mieć obowiązek udzielania informacji zebranych przez Serwis upoważnionym organom na podstawie zgodnych z prawem żądań w zakresie wynikającym z żądania.</p>
+<h2>6. Zarządzanie plikami cookies – jak w praktyce wyrażać i cofać zgodę?</h2>
+<ol>
+<li>1. Jeśli użytkownik nie chce otrzymywać plików cookies, może zmienić ustawienia przeglądarki. Zastrzegamy, że wyłączenie obsługi plików cookies niezbędnych dla procesów uwierzytelniania, bezpieczeństwa, utrzymania preferencji użytkownika może utrudnić, a w skrajnych przypadkach może uniemożliwić korzystanie ze stron www</li>
+<li>2. W celu zarządzania ustawieniami cookies wybierz z listy poniżej przeglądarkę internetową/ system i postępuj zgodnie z instrukcjami:</li>
+</ol>
+<ul>
+<li>a. Internet Explorer</li>
+<li>b. Chrome</li>
+<li>c. Safari</li>
+<li>d. Firefox</li>
+<li>e. Opera</li>
+<li>f. Android</li>
+<li>g. Safari (iOS)</li>
+<li>h. Windows Phone</li>
+</ul>
+<div class="footer">
+    <form action="#" jsfc="h:form">
+        <ul>
+            <li><a jsf:action="/Pages/about.xhtml?faces-redirect=true" jsfc="h:commandLink">O nas</a></li>
+            <li><a jsf:action="/Pages/rules.xhtml?faces-redirect=true" jsfc="h:commandLink">Regulamin</a></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>
